@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oncoscope"
+version = "0.1.0"
+description = "Brain-tumour MRI: joint segmentation and classification with patient-level evaluation, Grad-CAM and shortcut tests."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "torch>=2.2",
+  "torchvision>=0.17",
+  "h5py>=3.10",
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "scipy>=1.11",
+  "scikit-learn>=1.4",
+  "matplotlib>=3.8",
+  "typer>=0.12",
+  "pyyaml>=6",
+  "rich>=13",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+oncoscope = "oncoscope.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 125
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "NPY"]
+ignore = ["B008", "NPY002"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

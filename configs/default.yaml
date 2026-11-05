@@ -1,0 +1,27 @@
+run_name: unet-resnet18
+
+data:
+  mat_dir: C:/Users/Fahim/data/brain-tumor/mat   # figshare .mat files (Cheng et al.)
+  cache: data/cache_256.npz
+  size: 256
+
+split:                      # by patient: no person's slices appear in two splits
+  val_frac: 0.10
+  test_frac: 0.20
+  seed: 13
+
+model:
+  pretrained: true          # ImageNet ResNet-18 encoder
+  dropout: 0.3
+
+train:
+  epochs: 18
+  batch_size: 16
+  lr: 0.0006
+  encoder_lr: 0.0002
+  weight_decay: 0.0001
+  seg_weight: 1.0
+  cls_weight: 1.0
+  patience: 6
+  seed: 13
+  workers: 0

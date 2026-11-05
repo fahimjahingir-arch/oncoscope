@@ -1,0 +1,9 @@
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+data/
+train.log
+prediction.png
+runs/*/eval/cams_sample.npz
+.Rhistory
