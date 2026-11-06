@@ -7,3 +7,4 @@ train.log
 prediction.png
 runs/*/eval/cams_sample.npz
 .Rhistory
+runs/*/best.pt
