@@ -1,0 +1,10 @@
+true,pred,n
+meningioma,meningioma,103
+meningioma,glioma,6
+meningioma,pituitary,14
+glioma,meningioma,22
+glioma,glioma,301
+glioma,pituitary,3
+pituitary,meningioma,4
+pituitary,glioma,0
+pituitary,pituitary,176

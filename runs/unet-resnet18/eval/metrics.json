@@ -1,0 +1,18 @@
+{
+  "n_patients": 48,
+  "n_slices": 629,
+  "accuracy": 0.9220985691573926,
+  "macro_f1": 0.9040623018679762,
+  "kappa": 0.8741753486397335,
+  "dice_mean": 0.7455383539199829,
+  "dice_median": 0.8701854348182678,
+  "iou_mean": 0.656482621582544,
+  "patient_accuracy": 0.9375,
+  "ece": 0.05796537779283448,
+  "cam_energy_in_tumour": 0.045254360884428024,
+  "tumour_area_fraction": 0.017512820293869236,
+  "cam_pointing_game": 0.3863275039745628,
+  "acc_tumour_erased": 0.834658187599364,
+  "acc_tumour_only": 0.4419713831478537,
+  "acc_majority": 0.5182829888712241
+}

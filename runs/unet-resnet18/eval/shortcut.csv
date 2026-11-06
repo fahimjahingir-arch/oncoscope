@@ -1,0 +1,5 @@
+condition,accuracy
+full image,0.9220985691573926
+tumour only (context blanked),0.4419713831478537
+tumour erased (context only),0.834658187599364
+majority-class baseline,0.5182829888712241
