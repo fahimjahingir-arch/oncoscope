@@ -4,6 +4,8 @@
 
 ![Held-out patients: expert vs model tumour outlines and Grad-CAM attention](figures/gallery.png)
 
+<sub>**Figure 1.** Two representative correctly classified test slices per tumour type (**a–f**). Left of each pair: expert outline (green) and model outline (orange, dashed), with the Dice coefficient. Right: Grad-CAM attention for the predicted class, with the expert outline in white and the predicted probability.</sub>
+
 A single network takes a contrast-enhanced T1 MRI slice and does two things at once:
 
 1. **Segmentation:** draws the tumour boundary pixel by pixel.
@@ -24,9 +26,13 @@ The test set is **48 patients (629 slices)**. No slice from these patients was u
 
 ![Confusion matrix and Dice distributions](figures/classification_and_segmentation.png)
 
+<sub>**Figure 2.** **a**, Tumour-type confusion matrix on 629 test slices (row-normalised recall, with counts). **b**, Per-slice Dice coefficient by tumour type. Boxes show the median and interquartile range.</sub>
+
 Meningioma and pituitary outlines are close to expert quality (mean Dice 0.88 and 0.89). **Glioma is the hard case** (mean Dice 0.62): gliomas infiltrate surrounding tissue with irregular, ill-defined borders, and 13% of glioma slices are missed entirely.
 
-![Dice vs tumour size](figures/dice_vs_tumour_size.png)
+<p align="center"><img src="figures/dice_vs_tumour_size.png" width="58%"></p>
+
+<sub>**Figure 3.** Dice coefficient against tumour area (log scale) for every test slice, with LOESS fits per tumour type.</sub>
 
 ## Shortcut test: is it reading the tumour?
 
@@ -36,6 +42,8 @@ Every test slice was re-scored twice:
 - **Tumour only:** everything outside a box around the tumour is blanked.
 
 ![Shortcut test](figures/shortcut_test.png)
+
+<sub>**Figure 4.** **a**, Tumour-type accuracy on the same test slices under each condition. The dashed line is chance (33%). **b**, Accuracy by true tumour type with the full image and with the tumour erased.</sub>
 
 | condition | accuracy |
 |---|---|
@@ -52,7 +60,9 @@ Every test slice was re-scored twice:
 | glioma | 94.5% |
 | meningioma | 33.3% |
 
-![The model keeps its answer after the tumour is erased](figures/shortcut_examples.png)
+<p align="center"><img src="figures/shortcut_examples.png" width="70%"></p>
+
+<sub>**Figure 5.** Examples (**a–c**) where the prediction is unchanged after the tumour is erased. Top: original slice with the expert outline. Bottom: the same slice with the tumour (plus a 6-pixel margin) inpainted from the surrounding tissue.</sub>
 
 How to read this:
 
@@ -64,6 +74,8 @@ How to read this:
 Grad-CAM points the same way. Attention is 2.5× denser on the tumour than on the rest of the image (median), but it is diffuse: the attention peak lands on the tumour in only 39% of slices, and **misclassified slices cluster where attention misses the tumour**.
 
 ![Grad-CAM focus and calibration](figures/gradcam_and_calibration.png)
+
+<sub>**Figure 6.** **a**, Grad-CAM attention density inside the tumour relative to a uniform map (1×, dashed line), against tumour area, for correctly classified and misclassified slices. **b**, Reliability diagram (bins with fewer than 5 slices omitted). The dashed line is perfect calibration.</sub>
 
 **Takeaway:** a high accuracy number on this benchmark is not evidence that a model has learned tumour appearance. Any claim of diagnostic ability should come with a test like this one. Fixes worth trying: train the classifier on tumour-centred crops, mask context during training, or balance slice positions across classes.
 
